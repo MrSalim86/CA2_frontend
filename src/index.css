@@ -1,4 +1,7 @@
-
+/* For the router */
+.header {
+  color: whitesmoke;
+}
 /* For the router */
 ul.header {
   list-style-type: none;
@@ -7,20 +10,26 @@ ul.header {
   overflow: hidden;
   background-color: #333;
   width: 100%;
- }
- 
- ul.header li { float: left;}
- 
- ul.header li a {
+}
+
+ul.header li {
+  float: left;
+}
+
+ul.header li a {
   display: block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
- }
- ul.header li a:hover:not(.active) { background-color: #111;}
- .active { background-color: #62e4f8;}
-.loggedin { 
+}
+ul.header li a:hover:not(.active) {
+  background-color: #111;
+}
+.active {
+  background-color: #62e4f8;
+}
+.loggedin {
   color: whitesmoke;
   padding: 3px;
   text-align: center;
