@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/CA2";
+const URL = "http://localhost:8080/CA2/";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -16,16 +16,38 @@ function apiFacade() {
       username: user,
       password: password,
     });
-    return fetch(URL + "/api/login", options)
+    return fetch(URL + "/api/xxx/joke", options)
       .then(handleHttpErrors)
       .then(res => {
         setToken(res.token);
       });
   };
 
-  const fetchData = ressource => {
+  const Joke = () => {
+    const [joke, setJoke] = useState(null);
+    useEffect(() => {
+      fetchData("/api/xxx/joke").then(data => setJoke(data));
+    }, []);
+
+    return (
+      <div className="bord">
+        {joke != null &&
+          joke.map((joke, index) => {
+            return (
+              <div key={index}>
+                <h3>{joke.id}</h3>
+                <p>Joke: {joke.url}</p>
+              </div>
+            );
+          })}
+        {joke == null && <p>No joke found</p>}
+      </div>
+    );
+  };
+
+  const fetchData = jokeUrl => {
     const options = makeOptions("GET", true); //True add's the token
-    return fetch(URL + ressource, options).then(handleHttpErrors);
+    return fetch(URL + jokeUrl, options).then(handleHttpErrors);
   };
   const makeOptions = (method, addToken, body) => {
     var opts = {

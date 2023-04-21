@@ -3,7 +3,6 @@ import facade from "./apiFacade";
 import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header";
 import Content from "./components/Content";
-import settings from "./components/settings";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
