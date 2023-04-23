@@ -1,27 +1,18 @@
-/*import React from "react";
-import { useState, useEffect } from "react";
-import facade from "../apiFacade";
+import React, { useState, useEffect } from "react";
+import apiFacade from "./apiFacade";
 
 const Joke = () => {
   const [joke, setJoke] = useState([]);
 
   useEffect(() => {
     const getJoke = async () => {
-      const jokefromDB = await facade.fetchJoke();
+      const jokefromDB = await apiFacade.fetchJoke();
+      console.log("Joke: ", jokefromDB);
       setJoke(jokefromDB.result);
     };
+
     getJoke();
   }, []);
-  const fetchJoke = async () => {
-    const res = await fetch("http://localhost:8080/CA2", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-    return data;
-  };
 
   return (
     <div className="bord">
@@ -40,4 +31,3 @@ const Joke = () => {
 };
 
 export default Joke;
-*/

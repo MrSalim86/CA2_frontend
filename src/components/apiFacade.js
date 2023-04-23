@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/CA2/";
+const URL = "http://localhost:8080/CA2/api/xxx/joke";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -7,48 +7,43 @@ function handleHttpErrors(res) {
   return res.json();
 }
 
+async function fetchChuckNorrisJoke() {
+  const response = await fetch("https://api.chucknorris.io/jokes/random");
+  const json = await response.json();
+  return json.value;
+}
+
 function apiFacade() {
-  /* Insert utility-methods from a later step (d) here (REMEMBER to uncomment in the returned object when you do)*/
+  // other utility methods...
 
-  const login = (user, password) => {
-    // console.log("login");
-    const options = makeOptions("POST", true, {
-      username: user,
-      password: password,
+  const fetchJoke = async () => {
+    const res = await fetch(URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-    return fetch(URL + "/api/xxx/joke", options)
-      .then(handleHttpErrors)
-      .then(res => {
-        setToken(res.token);
-      });
+    const data = await res.json();
+    return data;
   };
 
-  const Joke = () => {
-    const [joke, setJoke] = useState(null);
-    useEffect(() => {
-      fetchData("/api/xxx/joke").then(data => setJoke(data));
-    }, []);
-
-    return (
-      <div className="bord">
-        {joke != null &&
-          joke.map((joke, index) => {
-            return (
-              <div key={index}>
-                <h3>{joke.id}</h3>
-                <p>Joke: {joke.url}</p>
-              </div>
-            );
-          })}
-        {joke == null && <p>No joke found</p>}
-      </div>
-    );
+  return {
+    // other utility methods...
+    fetchJoke,
   };
+}
+const fetchData = ressource => {
+  const options = makeOptions("GET", true); //True add's the token
+  return fetch(URL + ressource, options).then(handleHttpErrors);
+};
 
-  const fetchData = jokeUrl => {
-    const options = makeOptions("GET", true); //True add's the token
-    return fetch(URL + jokeUrl, options).then(handleHttpErrors);
-  };
+const login = (user, password) => {
+  // console.log("login");
+  const options = makeOptions("POST", true, {
+    username: user,
+    password: password,
+  });
+
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -78,6 +73,7 @@ function apiFacade() {
   const logout = () => {
     localStorage.removeItem("jwtToken");
   };
+
   function readJwtToken(token) {
     console.log("TOKEN: ", token);
     // console.log('TOKEN opened with atob: ',window.atob(token));
@@ -108,6 +104,6 @@ function apiFacade() {
     fetchData,
     readJwtToken,
   };
-}
+};
 const facade = apiFacade();
 export default facade;

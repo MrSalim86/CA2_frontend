@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import facade from "../apiFacade";
+import facade from "./apiFacade";
 function LoggedIn({ user, logout }) {
   const [dataFromServer, setDataFromServer] = useState("Loading...");
   useEffect(() => {

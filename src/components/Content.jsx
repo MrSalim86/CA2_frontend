@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import facade from "../apiFacade";
+import facade from "./apiFacade";
 
 const Content = ({ user }) => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About user={user} />} />
+      <Route path="http://localhost:8080/CA2/api/xxx/" element={<Home />} />
+      <Route
+        path="http://localhost:8080/CA2/api/xxx/joke"
+        element={<About user={user} />}
+      />
     </Routes>
   );
 };
