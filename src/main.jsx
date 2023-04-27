@@ -1,17 +1,14 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import apiFacade from "./components/apiFacade";
-import Jokes from "./components/Joke";
+import apiFacade from "./apiFacade";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const rootElement = document.getElementById("root");
-
-createRoot(rootElement).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
-      <Jokes />
+      <App apiFacade={apiFacade} />
     </Router>
   </React.StrictMode>
 );

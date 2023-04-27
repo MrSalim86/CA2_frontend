@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import facade from "./apiFacade";
+import facade from "../apiFacade";
 function LoggedIn({ user, logout }) {
   const [dataFromServer, setDataFromServer] = useState("Loading...");
   useEffect(() => {
@@ -14,7 +14,7 @@ function LoggedIn({ user, logout }) {
 
   return (
     <div>
-      {/* <h3>{dataFromServer}</h3> */}
+      {<h3>{dataFromServer}</h3>}
       <span>
         {user.username} with roles: {user.roles}
         <button onClick={logout}>Logout</button>
